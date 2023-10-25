@@ -1,0 +1,3 @@
+id,email,password,role
+1,user@user.com,user,USER
+2,editor@editor.com,editor,EDITOR

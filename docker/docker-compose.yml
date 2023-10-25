@@ -1,0 +1,45 @@
+version: "3.5"
+
+services:
+
+  db:
+    image: postgres:14-alpine
+    restart: always
+    container_name: weather_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: weather-service
+    volumes:
+      - weather-db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - weather
+
+  weather-service:
+    hostname: weather-api
+    container_name: weather-api
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "9005:9005"
+    environment:
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/weather-service
+      SPRING_LIQUIBASE_USERNAME: postgres
+      SPRING_LIQUIBASE_PASSWORD: postgres
+      SPRING_LIQUIBASE_URL: jdbc:postgresql://db:5432/weather-service
+    networks:
+      - weather
+
+networks:
+  weather:
+    name: weather-local
+    driver: bridge
+
+volumes:
+  weather-db-data:

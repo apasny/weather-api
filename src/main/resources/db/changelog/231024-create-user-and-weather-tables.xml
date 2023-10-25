@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="0001-create-sequence-for-users-table" author="Apasau">
+        <createSequence
+                sequenceName="users_sequence"
+                dataType="bigint"
+                startValue="1"/>
+    </changeSet>
+
+    <changeSet id="0002-create-users-table" author="Apasau">
+        <createTable tableName="users">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="email" type="varchar">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="0003-create-sequence-for-weather-table" author="Apasau">
+        <createSequence
+                sequenceName="weather_sequence"
+                dataType="bigint"
+                startValue="1"/>
+    </changeSet>
+
+    <changeSet id="0004-create-weather-table" author="Apasau">
+        <createTable tableName="weather">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="date" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lat" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lon" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="state" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="temperatures" type="bigint" />
+        </createTable>
+    </changeSet>
+
+    <changeSet id="0006-create-weather_temperatures-table" author="Apasau">
+        <createTable tableName="weather_temperatures">
+            <column name="weather_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="temperature" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="0007-initial-users-data" author="Apasau">
+        <loadData tableName="users"
+                  file="data/users.csv"
+                  relativeToChangelogFile="true"
+                  commentLineStartsWith=""
+                  usePreparedStatements="true">
+        </loadData>
+
+    </changeSet>
+
+
+</databaseChangeLog>

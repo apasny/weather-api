@@ -1,0 +1,22 @@
+server:
+  port: 9005
+
+spring:
+  jpa:
+    hibernate:
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/weather-service
+    username: postgres
+    password: postgres
+
+  liquibase:
+    change-log: classpath:db/root.changelog.xml
+    url: ${spring.datasource.url}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+
+security:
+  key: somerandomkeywhichislongenoughtoalignwiththejwtspecification
+
