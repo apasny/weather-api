@@ -60,14 +60,7 @@ class WeatherServiceImpl(private val weatherRepository: WeatherRepository, priva
     }
 
     override fun createWeather(weatherRequestDto: WeatherRequestDto): WeatherResponseDto {
-        val weatherEntity = WeatherEntity.Builder()
-            .setDate(weatherRequestDto.date)
-            .setState(weatherRequestDto.state)
-            .setCity(prepareText(weatherRequestDto.city))
-            .setLat(weatherRequestDto.lat)
-            .setLon(weatherRequestDto.lon)
-            .setTemperatures(weatherRequestDto.temperatures)
-            .build()
+        val weatherEntity = mapper.toWeatherEntity(weatherRequestDto)
         return mapper.toWeatherResponseDto(weatherRepository.save(weatherEntity))
     }
 

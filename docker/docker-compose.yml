@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
 
-  db:
+  weatherdb:
     image: postgres:14-alpine
     restart: always
     container_name: weather_db
@@ -29,10 +29,10 @@ services:
     environment:
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/weather-service
+      SPRING_DATASOURCE_URL: jdbc:postgresql://weatherdb:5432/weather-service
       SPRING_LIQUIBASE_USERNAME: postgres
       SPRING_LIQUIBASE_PASSWORD: postgres
-      SPRING_LIQUIBASE_URL: jdbc:postgresql://db:5432/weather-service
+      SPRING_LIQUIBASE_URL: jdbc:postgresql://weatherdb:5432/weather-service
     networks:
       - weather
 
