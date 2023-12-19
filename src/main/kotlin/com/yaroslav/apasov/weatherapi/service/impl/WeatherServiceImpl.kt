@@ -41,11 +41,10 @@ class WeatherServiceImpl(private val weatherRepository: WeatherRepository, priva
 
     private fun getSortingOrders(sort: String?): List<Sort.Order> {
         val defaultOrder = Sort.Order(Sort.Direction.ASC, DEFAULT_SORT_PROPERTY)
-        if (Objects.isNull(sort)) return listOf(defaultOrder)
+        if (sort == null) return listOf(defaultOrder)
         val orders: MutableList<Sort.Order> = ArrayList()
-        if (sort == SORT_PARAM) orders.add(Sort.Order(Sort.Direction.DESC, SORT_PROPERTY).ignoreCase()) else orders.add(
-            Sort.Order(Sort.Direction.ASC, SORT_PROPERTY).ignoreCase()
-        )
+        if (sort == SORT_PARAM) orders.add(Sort.Order(Sort.Direction.DESC, SORT_PROPERTY).ignoreCase())
+            else orders.add(Sort.Order(Sort.Direction.ASC, SORT_PROPERTY).ignoreCase())
         orders.add(defaultOrder)
         return orders
     }

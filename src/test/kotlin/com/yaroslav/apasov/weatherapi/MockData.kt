@@ -8,22 +8,8 @@ class MockData {
     companion object {
         fun getValidWeatherList(): List<WeatherEntity> {
             return listOf(
-                WeatherEntity.Builder()
-                    .setCity("Minsk")
-                    .setDate("2001-05-15")
-                    .setLat(32.36)
-                    .setLon(12.01)
-                    .setId(1)
-                    .setTemperatures(doubleArrayOf(2.32, 1.24).toList())
-                    .build(),
-                WeatherEntity.Builder()
-                    .setCity("London")
-                    .setDate("2001-05-15")
-                    .setLat(12.36)
-                    .setLon(72.01)
-                    .setId(2)
-                    .setTemperatures(doubleArrayOf(1.32, 6.24).toList())
-                    .build()
+                WeatherEntity(1, "2001-05-15", 32.36, 12.01, "Minsk", "Minsk", doubleArrayOf(2.32, 1.24).toList()),
+                WeatherEntity(2, "2001-05-15", 12.36, 72.01, "London", "London", doubleArrayOf(1.32, 6.24).toList())
             )
         }
 
@@ -34,7 +20,7 @@ class MockData {
                 lat = -12.54,
                 city = "London",
                 state = "London",
-                temperatures = doubleArrayOf(2.1,3.5).toList()
+                temperatures = doubleArrayOf(2.1, 3.5).toList()
             )
         }
 
@@ -46,7 +32,7 @@ class MockData {
                 lat = -12.54,
                 city = "London",
                 state = "London",
-                temperatures = doubleArrayOf(2.1,3.5).toList()
+                temperatures = doubleArrayOf(2.1, 3.5).toList()
             )
         }
     }
