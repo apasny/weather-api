@@ -7,7 +7,7 @@ spring:
 
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/weather-service
+    url: jdbc:postgresql://localhost:5432/weather_service
     username: postgres
     password: postgres
 
